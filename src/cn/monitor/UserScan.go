@@ -10,6 +10,23 @@ import (
 	"sync"
 )
 
+func ScanGroupAndUserToString() (json string, err error ) {
+
+	logger.Logger("start sacn process \r\n")
+
+	group, grouperr = scanGroup()
+	
+	user, usererr = ScanUser()
+	
+	if(grouperr!=nil || usererr!=nil){
+		return nil;
+	}
+
+	
+	
+
+}
+
 func ScanGroupAndUser() (group ,user sync.Map, grouperr ,usererr error ) {
 
 	logger.Logger("start sacn process \r\n")
