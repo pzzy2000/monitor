@@ -6,15 +6,28 @@ import (
 	 "encoding/json"
 )
 
+func ListJson(sm sync.Map) {
+	sm.Range(func(k, v interface{}) bool {
+		
+		 jsonBytes, err := json.Marshal(v)
+        if err != nil {
+               logger.Error(err.Error())
+        }else{
+        
+        	logger.Logger(" Process -> "+string(jsonBytes));
+        }
+		return true
+	})
+
+}
+
 func listProcess(sm *sync.Map) {
 		logger.Logger("---------------------------------------- ");
 		
 	sm.Range(func(k, v interface{}) bool {
-		process, ok := v.(Process);
-		if(ok){
-			
-			logger.Logger(" Process -> "+(process).Comm);
-		 jsonBytes, err := json.Marshal(process)
+	
+		
+		 jsonBytes, err := json.Marshal(v)
         if err != nil {
                logger.Error(err.Error())
         }else{
@@ -22,9 +35,6 @@ func listProcess(sm *sync.Map) {
         	logger.Logger(" Process -> "+string(jsonBytes));
         }
 
-
-		}
-		
 		return true
 	})
 

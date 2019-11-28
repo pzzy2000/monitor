@@ -4,22 +4,34 @@ import (
 	logger "cn/monitor/log"
 
 //	"strconv"
-//		"fmt"
+		"fmt"
 	"io/ioutil"
 	//	"os"
 	//	"strconv"
 	"sync"
+	"time"
 )
+
+
+func endProcess(sm *sync.Map){
+	 time :=time.Now();
+	sm.Range(func(k, v interface{}) bool {
+		  process, ok := v.(Process);
+		  if(ok){
+		  	 fmt.Println(time.Format("2006-01-02 03:04:05 PM"))
+		  	 process.EndTime =time.Format("2006-01-02 03:04:05");
+		  }
+		
+		return true
+	})
+	
+}
+
 
 func Scan() {
 	logger.Logger("start sacn process \r\n")
 	var sm sync.Map
-	//	vv, ok := sm.Load(1)
-	//	if !ok {
-	//		vv = Process{Pid: 11}
-	//		sm.Store(1, vv)
-	//	}
-	//	p, ok := (vv).(Process)
+	endProcess(&sm);
 
 	list(&sm);
 	
@@ -33,7 +45,7 @@ func list(sm *sync.Map){
 	if err == nil {
 		for _, f := range files {
 			if f.IsDir() && IsDigit(f.Name()) {
-				var process = Process{Pid: f.Name()};
+				var process = Process{Pid: f.Name(),StartTime:f.ModTime().Format("2006-01-02 03:04:05")};
 				readAll(&process);
 				sm.Store(f.Name(),process)
 //				 err :=readAll(&process);
