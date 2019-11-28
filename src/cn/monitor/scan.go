@@ -35,7 +35,7 @@ func Scan() {
 
 	list(&sm);
 	
-	listProcess(&sm);
+//	listProcess(&sm);
 }
 
 func list(sm *sync.Map){
