@@ -22,11 +22,10 @@ func ListJson(sm sync.Map) {
 }
 
 func listProcess(sm *sync.Map) {
-		logger.Logger("---------------------------------------- ");
-		
+	
 	sm.Range(func(k, v interface{}) bool {
 	
-		
+
 		 jsonBytes, err := json.Marshal(v)
         if err != nil {
                logger.Error(err.Error())
