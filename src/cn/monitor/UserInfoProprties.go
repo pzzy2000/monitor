@@ -3,6 +3,22 @@ package monitor
 import ()
 
 // 用户名:密码:ID:用户组ID:注释:家目录:登录使用的shell
+
+var err_msg_find_user_or_group =-100
+
+var success_msg_defults = 0
+
+type UserGroup struct{
+	
+	 Status int   `json:"status"`
+	 
+	 Group []GroupBean  `json:"group"`
+	 
+	 User  []UserBean   `json:"user"`
+	
+}
+
+
 type UserBean struct {
 	Name string `json:"name"`
 
