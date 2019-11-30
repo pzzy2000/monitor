@@ -10,8 +10,6 @@ var success_msg_defults = 0
 
 type UserGroup struct{
 	
-	 Status int   `json:"status"`
-	 
 	 Group []GroupBean  `json:"group"`
 	 
 	 User  []UserBean   `json:"user"`

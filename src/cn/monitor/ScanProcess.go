@@ -48,12 +48,6 @@ func list(sm *sync.Map){
 				var process = Process{Pid: f.Name(),StartTime:f.ModTime().Format("2006-01-02 03:04:05")};
 				readAll(&process);
 				sm.Store(f.Name(),process)
-//				 err :=readAll(&process);
-//				  if(err!=nil){
-//				  	logger.Error("read comm file error "+err.Error());
-//				  }else{
-//				  	sm.Store(f.Name(),process)
-//				  }	
 			}
 
 		}

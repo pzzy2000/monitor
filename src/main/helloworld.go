@@ -6,8 +6,8 @@ import (
 )
 
 func main() {
-	//	scan.Scan();
+//		scan.Scan();
 	data:=scan.UserGroupToString();
-
+//
 	fmt.Println(data);
 }
