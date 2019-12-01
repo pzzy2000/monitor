@@ -7,7 +7,7 @@ import (
 )
 
 
-func MapTostring(sm sync.Map) (string){
+func SyncMapToJsonString(sm sync.Map) (string){
 	   var j[] interface{};
 	   sm.Range(func(k, v interface{}) bool {
 			j = append(j, v)

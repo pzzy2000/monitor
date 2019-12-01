@@ -3,10 +3,16 @@ package monitor
 import (
 	"fmt"
 	"io/ioutil"
+	"io"
 	"strings"
+	"os"
+	"bufio"
+	//logger "cn/monitor/log"
+	"strconv"
+	
 )
 
-var error_message_read_file_error = "-1000"
+
 
 func readfile(file string, process *Process) (data string, err error) {
 	statPath := fmt.Sprintf("/proc/%s/%s", process.Pid, file)
@@ -23,7 +29,51 @@ func readfile(file string, process *Process) (data string, err error) {
 func readAll(process *Process) {
 	readComm(process)
 	readCmdline(process)
-	readStat(process)
+	//readStat(process)
+	readStatus(process);
+}
+
+func  readStatus(process *Process) (err error) {
+	statPath := fmt.Sprintf("/proc/%s/%s", process.Pid, "status")
+	f, err := os.Open(statPath)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+	bfRd := bufio.NewReader(f)
+	for {
+		line, _, err := bfRd.ReadLine()
+		if err != nil { //遇到任何错误立即返回，并忽略 EOF 错误信息
+			if err == io.EOF {
+				break
+			}
+			return err
+		}
+		data :=strings.Split(string(line), ":");
+//		logger.Logger(string(line) +" "+data[1])
+		switch data[0] {
+		case "PPid":
+		process.Ppid = strings.Trim(data[1], "\t");
+		break;
+		case "State" :{
+			stata := strings.Replace(strings.Replace(data[1], "\t", "|", -1)," ","|",-1 );
+			process.State = strings.Split(stata, "|")[1];
+			break;
+		}
+		case "Uid":{
+            uid, _ := strconv.Atoi(strings.Split(strings.Replace(data[1], "\t", "|", -1),"|")[1])
+			process.Uid = uid;
+			break;
+		}
+		case "Gid":{
+			gid, _ := strconv.Atoi(strings.Split(strings.Replace(data[1], "\t", "|", -1),"|")[1])
+			process.Gid = gid;
+			break;
+		}
+		}
+	}
+
+return nil;
 }
 
 func readCmdline(process *Process) (err error) {

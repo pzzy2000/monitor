@@ -4,7 +4,9 @@ import (
 
 )
 
-var  action_type_group_yser = 1000;
+var  action_type_group_user = 1000;
+
+var  action_type_process = 1001;
 
 type Message struct {
 	

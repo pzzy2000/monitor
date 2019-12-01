@@ -7,7 +7,7 @@ import (
 
 func main() {
 //		scan.Scan();
-	data:=scan.UserGroupToString();
+	 data := scan.ProcessToJsonString();
 //
-	fmt.Println(data);
+	fmt.Println(data); 
 }

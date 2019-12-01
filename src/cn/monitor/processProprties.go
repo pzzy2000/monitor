@@ -1,10 +1,12 @@
 package monitor
 
 import ()
-
+var error_message_read_file_error = "-1000"
 type Process struct {
-	User string `json:"user"`
-
+	Uid int `json:"uid"`
+	
+	Gid int `json:"gid"`
+	
 	Pid string `json:"pid"`
 
 	Ppid string `json:"ppid"`

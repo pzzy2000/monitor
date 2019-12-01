@@ -13,7 +13,7 @@ import (
 
 func UserGroupToString() string {
 
-	var msg Message = Message{Action: action_type_group_yser}
+	var msg Message = Message{Action: action_type_group_user}
 
 	group, user, grouperr, usererr := ScanGroupAndUser()
 
