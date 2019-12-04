@@ -4,27 +4,28 @@ import (
 
 )
 
-var tcp_listen = 10
 
 var msg_success =0;
 
 var msg_fail =1;
 
+var socket_pid_defult_nil ="-100";
+
 
 type NetWorks struct{
 	  
-	  msg int `json:"msg"`
-	 
 	  Pid int   `json:"pid"`
-	 
-	  Tcp  []NetWork `json:"tcp"`
+	  // key  localip
+	  NetWork []NetWork  `json:"netWork"`
 	  
-	  Udp  []NetWork `json:"udp"`
 }
 
 
 type NetWork struct{
 	
-	 LocalAddress []string  `json:"local"`
+	 Proto  int  `json:"proto"`
+	 
+	 LocalAddress  string `json:"localAddress"`
+	 
 	 
 }
