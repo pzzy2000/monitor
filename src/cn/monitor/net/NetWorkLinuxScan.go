@@ -109,11 +109,11 @@ func scanTcp6(pidSocket map[int]NetWorks, socketPid map[string]string) (err erro
 				pid, _ := strconv.Atoi(pidString)
 				netWorks, ok := pidSocket[pid]
 				if ok {
-					netWorks.NetWork = append(netWorks.NetWork, NetWork{Proto: 6, LocalAddress: localAddress})
+					netWorks.NetWork = append(netWorks.NetWork, NetWork{Proto: 6, Types:socket_type_tcp,LocalAddress: localAddress})
 					pidSocket[pid] = netWorks
 				} else {
 					netWorks = NetWorks{Pid: pid}
-					netWorks.NetWork = append(netWorks.NetWork, NetWork{Proto: 6, LocalAddress: localAddress})
+					netWorks.NetWork = append(netWorks.NetWork, NetWork{Proto: 6, Types:socket_type_tcp,LocalAddress: localAddress})
 					pidSocket[pid] = netWorks
 				}
 			}
@@ -166,11 +166,11 @@ func scanTcp(pidSocket map[int]NetWorks, socketPid map[string]string) (err error
 				pid, _ := strconv.Atoi(pidString)
 				netWorks, ok := pidSocket[pid]
 				if ok {
-					netWorks.NetWork = append(netWorks.NetWork, NetWork{Proto: 4, LocalAddress: localAddress})
+					netWorks.NetWork = append(netWorks.NetWork, NetWork{Proto: 4, Types:socket_type_tcp,LocalAddress: localAddress})
 					pidSocket[pid] = netWorks
 				} else {
 					netWorks := NetWorks{Pid: pid}
-					netWorks.NetWork = append(netWorks.NetWork, NetWork{Proto: 4, LocalAddress: localAddress})
+					netWorks.NetWork = append(netWorks.NetWork, NetWork{Proto: 4, Types:socket_type_tcp,LocalAddress: localAddress})
 					pidSocket[pid] = netWorks
 				}
 			}

@@ -2,14 +2,14 @@ package main
 
 import (
 	scan "cn/monitor"
-	scanet "cn/monitor/net"
+//	scanet "cn/monitor/net"
 	"fmt"
 )
 
 func main() {
 //		scan.Scan();
-	 data := scan.Scan();
-	 scanet.Sacn(&data)
+	s:= scan.ProcessToJsonString()
+	
 //
-	fmt.Println(data); 
+	fmt.Println(s); 
 }
