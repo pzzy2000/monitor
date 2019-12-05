@@ -2,13 +2,9 @@ package monitor
 
 import (
 	logger "cn/monitor/log"
-	
     "encoding/json"
-//	"strconv"
-		"fmt"
+	"fmt"
 	"io/ioutil"
-	//	"os"
-	//	"strconv"
 	"sync"
 	"time"
 )
